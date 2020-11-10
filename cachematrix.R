@@ -7,11 +7,10 @@
 ## is set to NULL which will work as a flag indicating the matrix's
 ## inverse is not yet set.  
 
-## set() allows for the matrix to be changed as well as setting
-## the inverse matrix to NULL which so the old matrix inverse 
-## can be erased.
+## set() sets or resets the matrix value and changes the stored 
+## matrix to NULL erasing the old matrix data.
 
-## get() allows for the retrieval of the matrix
+## get() retrieves the matrix
 
 ## setinv() stores the new inverse matrix
 
@@ -25,10 +24,8 @@ makeCacheMatrix <- function(x = matrix()) {
           }
           
           get <- function() x
-          setinv <- function(solve){
-                    ## print(solve)
-                    inv <<- solve
-                    ## print(inv)
+          setinv <- function(inverse){
+                    inv <<- inverse
                     }
           getinv <- function() inv
           
@@ -41,9 +38,9 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## cacheSolve retrieves the inverse matrix for x.
-## IF the stored inverse is not NULL then the cached inverse is retrieved.
+## If the stored inverse is *not* NULL then the cached inverse is retrieved.
 ## If the inverse is NULL the inverse matrix is calculated, stored in
-## cache, returned
+## cache, and returned
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
